@@ -285,6 +285,17 @@ GROUPS.forEach((g,gi)=>{
   docsEl.appendChild(ul);
 });
 
+/* 本文中の .md リンクを、このサイト内の遷移に変える */
+const BY_FILE = {};
+DOCS.forEach(d => { BY_FILE[d.file.split('/').pop()] = d.id; });
+function linkMd(){
+  content.querySelectorAll('a[href$=".md"]').forEach(a => {
+    const name = decodeURIComponent(a.getAttribute('href')).split('/').pop();
+    const id = BY_FILE[name];
+    if (id) a.setAttribute('href', '#/' + id);
+  });
+}
+
 function slug(t,i){ return 'h-'+i+'-'+t.replace(/[^\wぁ-んァ-ヶ一-龠]+/g,'-').slice(0,24); }
 
 async function load(id){
@@ -304,6 +315,7 @@ async function load(id){
   }
 
   content.innerHTML = marked.parse(cache[doc.id]);
+  linkMd();
   decorate();
   buildToc();
   applyFilter();
