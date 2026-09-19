@@ -1,0 +1,35 @@
+site	author	label	url	likes	date	chars	h2	h3	chars_per_h2	sent	avg_sent	over80	code	code_lines	imgs	tables	li	ol	bold	links	reader_head	goal_head	env	pitfall	firstp	call	hedge	title
+qiita	Sicut_study	Docker入門	https://qiita.com/Sicut_study/items/4f301d000ecee98e78c9	1689	2024-07-08	8166	12	5	680	178	44.8	7	38	190	5	2	14	6	11	14	0	1	0	2	5	27	8	Dockerがわからない人へ。これ1本で0から学べる丁寧なDocker入門
+qiita	Sicut_study	Git図解	https://qiita.com/Sicut_study/items/0318cc136c189b179b7f	1210	2024-09-29	9953	20	0	498	290	33.1	1	66	402	58	0	0	0	21	67	0	1	16	1	11	28	5	【図解解説】これ1本でGitをマスターできるチュートリアル！【完全版】
+qiita	minorun365	ClaudeCode爆速化	https://qiita.com/minorun365/items/114f53def8cb0db60f47	2331	2026-03-02	11875	17	20	699	281	41.3	7	6	53	0	2	14	15	0	6	0	1	0	5	31	6	2	Claude Codeですべての日常業務を爆速化しよう！
+qiita	minorun365	Dify	https://qiita.com/minorun365/items/4c5dba1de7977c386249	519	2024-05-06	1812	3	5	604	52	29.6	0	16	110	13	0	0	0	1	20	0	0	0	1	2	5	0	話題のローコードツール「Dify」で生成AIアプリを作ってみよう！
+qiita	minorun365	Cline	https://qiita.com/minorun365/items/b2990a7228e8cc4ed025	525	2025-01-12	2067	3	0	689	52	38.1	8	1	3	11	0	3	0	1	13	0	0	0	2	11	6	1	VS CodeとAIチャットの往復いらず！ 話題の拡張機能Clineで爆速開発してみよう
+qiita	MinoDriven	技術記事の書き方	https://qiita.com/MinoDriven/items/6718b5e70e3fb321ff9b	753	2021-12-01	5626	21	8	268	175	31.5	1	1	4	0	0	42	0	22	15	0	0	1	1	14	9	6	伝えたい人に届ける技術記事の書き方
+qiita	MinoDriven	非エンジニアに説明	https://qiita.com/MinoDriven/items/2d63dcaa92b50b049889	516	2022-12-12	5861	9	0	651	126	46.0	8	0	0	1	0	9	0	16	14	0	0	0	0	9	4	3	非エンジニアサイドに技術的負債や設計を説明するノウハウ
+qiita	MinoDriven	認知バイアス	https://qiita.com/MinoDriven/items/8e4abda43b05cd7a0200	762	2021-12-05	5694	12	12	474	150	35.6	2	0	0	1	0	7	0	0	16	0	0	0	3	4	5	2	設計を歪める認知バイアス
+qiita	c60evaporator	VPC丁寧解説	https://qiita.com/c60evaporator/items/2f24d4796202e8b06a77	1821	2022-08-07	32125	27	56	1190	354	85.4	42	1	2	1	19	43	0	376	208	0	0	41	3	2	4	10	Amazon VPCを「これでもか！」というくらい丁寧に解説
+qiita	c60evaporator	パラメータチューニング	https://qiita.com/c60evaporator/items/ca7eb70e1508d2ba5359	2053	2021-06-06	25253	22	35	1148	339	74.2	32	103	1101	69	11	0	0	174	157	0	1	0	16	6	6	27	機械学習のパラメータチューニングを「これでもか！」というくらい丁寧に解説
+qiita	rana_kualu	コピペをやめろ	https://qiita.com/rana_kualu/items/3b03961deb003a8a2f1d	1294	2021-12-27	4134	9	1	459	106	38.9	7	9	68	10	0	0	0	12	32	0	0	1	1	10	19	2	StackOverflowからのコピペをやめろ。今すぐにだ。
+qiita	rana_kualu	65のこと	https://qiita.com/rana_kualu/items/63ad0f68d66c5f0a464b	1127	2021-02-15	9355	68	0	138	292	32.0	1	0	0	0	0	0	0	0	11	0	0	2	2	22	56	7	コーディングを始めたときに知っておきたかった65のこと
+qiita	hirokidaichi	人数を増やしても	https://qiita.com/hirokidaichi/items/7f7f7881acba9302301f	2107	2021-10-31	5902	9	0	656	122	47.9	12	0	0	9	0	2	0	3	13	0	1	0	2	0	7	0	なぜ、ソフトウェアプロジェクトは人数を増やしても上手くいかないのか
+qiita	hirokidaichi	開発生産性	https://qiita.com/hirokidaichi/items/53f0865398829bdebef1	881	2022-12-22	17090	14	18	1221	319	52.5	13	1	5	11	0	24	0	18	20	0	1	0	3	4	9	6	開発生産性について議論する前に知っておきたいこと
+qiita	kojimadev	アンチパターン	https://qiita.com/kojimadev/items/06506d374f19493d7e72	1538	2023-12-04	6330	13	0	487	126	48.5	13	0	0	0	0	0	0	20	10	0	1	1	3	16	0	15	中途入社や部署異動で来た新メンバーを活躍しづらくするアンチパターン
+qiita	kojimadev	発信活動	https://qiita.com/kojimadev/items/f4a6539e4fbc641c6fa0	1426	2022-03-08	6263	10	0	626	116	52.8	15	0	0	2	0	8	0	37	12	0	0	2	0	43	3	7	30代後半になって初めて発信活動を始めたら人生が変わった話
+qiita	KNR109	研修資料まとめ	https://qiita.com/KNR109/items/f3268b311e11d5b821c0	4434	2022-07-08	2312	9	0	257	41	43.4	5	0	0	0	0	28	0	4	16	1	1	0	0	1	4	1	有名企業のエンジニア向け研修資料まとめ
+qiita	KNR109	チートシート集	https://qiita.com/KNR109/items/a6b3216552bee53b1724	2404	2022-08-04	3218	10	10	322	74	36.5	1	0	0	9	0	6	0	3	45	1	1	0	0	2	1	0	エンジニア向けチートシート集
+zenn	sesere	ルール忘れる問題	https://zenn.dev/sesere/articles/0420ecec9526dc	1050	2025-06-29	1264	4	4	316	28	45.1	18	4	64	1	0	1	0	4	0	0	0	0	0	1	3	2	
+zenn	sesere	playwrightmcp	https://zenn.dev/sesere/articles/4c0b55102dcc84	559	2025-06-24	1539	3	2	513	44	33.6	9	6	73	2	0	7	7	4	2	0	0	1	6	2	5	3	
+zenn	morizyun	ClaudeCode実践ガイド	https://zenn.dev/hokuto_tech/articles/86d1edb33da61a	1159	2025-06-20	4988	14	24	356	146	26.4	1	16	102	8	1	57	7	17	33	1	0	5	1	3	8	1	
+zenn	morizyun	CodexCLI実践ガイド	https://zenn.dev/hokuto_tech/articles/97fa88f7805a23	291	2025-09-30	4432	17	17	261	109	28.9	4	35	111	3	0	32	3	35	35	1	0	4	1	2	2	2	
+zenn	luvmini511	interfaceとtype	https://zenn.dev/luvmini511/articles/6c6f69481c2d17	1305	2020-12-12	1818	5	7	364	49	37.0	2	13	121	0	0	0	0	13	3	0	1	1	1	1	0	2	
+zenn	luvmini511	SSGとSSR	https://zenn.dev/luvmini511/articles/1523113e0dec58	436	2021-03-17	2919	6	6	486	70	41.7	7	2	41	5	0	4	0	14	5	0	0	1	2	2	2	1	
+zenn	catnose99	Nani翻訳	https://zenn.dev/catnose99/articles/nani-translate	1523	2025-10-14	5391	7	15	770	114	45.9	10	2	12	1	0	26	8	15	16	0	1	1	0	2	0	3	
+zenn	catnose99	RSS集約	https://zenn.dev/catnose99/articles/cb72a73368a547756862	496	2020-10-24	1973	7	1	282	50	38.6	2	2	17	1	0	5	3	4	11	0	0	0	0	4	0	9	
+zenn	uhyo	use RFC	https://zenn.dev/uhyo/articles/react-use-rfc	646	2022-10-16	10323	10	0	1032	186	54.5	17	8	82	0	1	3	1	5	8	0	1	0	0	3	8	5	
+zenn	uhyo	lightwindcss	https://zenn.dev/uhyo/articles/lightwindcss	179	2021-01-30	3768	4	1	942	70	52.7	11	7	73	0	0	11	6	10	6	0	1	0	0	5	1	2	
+zenn	karaage0703	MCPコマンド一発	https://zenn.dev/karaage0703/articles/3bd2957807f311	372	2025-06-28	5371	8	21	671	140	32.5	2	31	34	2	2	4	0	0	42	0	1	2	1	5	8	4	
+zenn	karaage0703	AIコーディング環境構築	https://zenn.dev/mkj/articles/cf8536923d9cd7	499	2025-03-04	10547	10	19	1055	199	50.1	14	17	139	8	1	12	0	8	34	0	0	2	2	23	20	14	
+zenn	mizchi	AIツール評価	https://zenn.dev/mizchi/articles/ai-model-current-snapshot-2025-0414	481	2025-04-14	3467	9	0	385	100	32.8	2	3	367	0	0	63	0	1	6	0	0	2	1	10	0	1	
+zenn	erukiti	AIコーディングプロセス	https://zenn.dev/erukiti/articles/2510-ai-coding	538	2025-10-20	6387	21	4	304	217	29.0	3	0	0	0	0	73	4	6	2	0	0	1	2	16	18	6	
+zenn	kaityo256	リンカのお仕事	https://zenn.dev/kaityo256/articles/what_is_linker	115	2021-08-02	2939	7	0	420	92	31.9	3	23	149	0	0	5	0	1	4	0	0	0	3	1	20	2	
+zenn	meijin	bulletproof-react	https://zenn.dev/manalink_dev/articles/bulletproof-react-is-best-architecture	2237	2021-11-08	6285	6	8	1048	114	47.8	12	9	91	0	0	40	0	0	23	0	0	3	7	13	0	5	
