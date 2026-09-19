@@ -1,1 +1,6 @@
 .DS_Store
+
+# 収集した母集団のJSONは大きいので置かない（collect_*.py で作り直す）
+tools/qiita_pool.json
+tools/zenn_pool.json
+bodies/
