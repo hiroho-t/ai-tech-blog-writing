@@ -5,11 +5,12 @@ analyze_titles.py と measure.py が出した数字を、次の3点で潰しに�
   1. プラットフォームを混ぜていないか（QiitaのLGTMとZennのいいねは単位が違う）
   2. 標本の作られ方（生存バイアス）が、見えている差を作っていないか
   3. 書き手ごとの相関を無視していないか（同じ人の記事は似る）
+  4. 作った判別規則を、作るのに使っていない記事で試したか
 
 usage: python3 tools/robust.py
 必要なファイル: qiita_pool.json / zenn_pool.json（collect_*.py が作る）、metrics.tsv
 """
-import json, re, csv, random, collections, statistics as st, datetime as dt, os, sys
+import json, re, csv, random, collections, statistics as st, datetime as dt, os, sys, time, urllib.request
 
 random.seed(42)
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -36,6 +37,22 @@ BOOT = 4000
 def boot_median_ci(vals, n=BOOT):
     meds = sorted(st.median(random.choices(vals, k=len(vals))) for _ in range(n))
     return meds[int(n * .025)], meds[int(n * .975)]
+
+
+CACHE = os.path.join(HERE, '..', 'bodies')
+
+
+def fetch(url):
+    """measure.py と同じキャッシュを使う"""
+    os.makedirs(CACHE, exist_ok=True)
+    key = os.path.join(CACHE, re.sub(r'[^A-Za-z0-9]+', '_', url)[-120:] + '.cache')
+    if os.path.exists(key):
+        return open(key, encoding='utf-8').read()
+    req = urllib.request.Request(url, headers={'User-Agent': 'writing-research/1.0', 'Accept': '*/*'})
+    t = urllib.request.urlopen(req).read().decode('utf-8', 'replace')
+    open(key, 'w', encoding='utf-8').write(t)
+    time.sleep(1.1)
+    return t
 
 
 def load(name):
@@ -173,6 +190,76 @@ def check_metrics():
     print('     「中央505字」ではなく「おおよそ400〜700字」と書く。\n')
 
 
+# ---------- 4. 判別規則を、作るのに使っていない記事で試す ----------
+CURATION_TITLE = r'(まとめ|集$|チートシート|ロードマップ|リンク集|資料|教材|選$|\d+選|一覧)'
+
+
+def article_features(item_id, fetch_fn):
+    """Qiita記事1本から、判別規則に使う値を出す"""
+    d = json.loads(fetch_fn(f'https://qiita.com/api/v2/items/{item_id}'))
+    md = d['body']
+    nc = re.sub(r'```.*?```', '', md, flags=re.S)
+    heads = re.findall(r'^#{1,6}\s+(.+)$', nc, re.M)
+    link_heads = [h for h in heads if re.match(r'^\s*\**\[[^\]]*\]\(https?://', h.strip())]
+    prose = re.sub(r'!\[[^\]]*\]\([^)]+\)', '', nc)
+    prose = re.sub(r'\[([^\]]*)\]\([^)]+\)', r'\1', prose)
+    prose = re.sub(r'^\s*(#{1,6}|>|[-*+]|\d+[.)])\s*', '', prose, flags=re.M)
+    prose = re.sub(r'`[^`\n]*`', '', prose)
+    chars = len(re.sub(r'\s', '', prose))
+    env = len(re.findall(r'(\d{4}年\d{1,2}月|時点|バージョン|version|v\d+\.\d+|環境[:：]|\d+\.\d+\.\d+)', prose))
+    pit = len(re.findall(r'(ハマ|つまず|つまづ|失敗|注意点|うまくいかな|エラー|落とし穴|罠|トラブル)', prose))
+    return dict(
+        pct_link_heads=100 * len(link_heads) / len(heads) if heads else 0,
+        per_head=chars / len(heads) if heads else chars,
+        env_pit=env + pit,
+        per_100=100 * d['likes_count'] / max(chars, 1),
+    )
+
+
+def check_rule(qp, fetch_fn, n_each=12, seed=3):
+    """method/02 の4基準を、測っていない記事で採点する"""
+    if qp is None:
+        return
+    print('=' * 72)
+    print('4. 判別規則を、作るのに使っていない記事で試す')
+    print('=' * 72)
+    rng = random.Random(seed)
+    pool = [a for a in qp if a['user']['id'] != 'KNR109']
+    cur = [a for a in pool if re.search(CURATION_TITLE, a['title'])]
+    non = [a for a in pool if not re.search(CURATION_TITLE, a['title'])]
+    rng.shuffle(cur); rng.shuffle(non)
+    sel = [(a, 'まとめ系') for a in cur[:n_each]] + [(a, 'それ以外') for a in non[:n_each]]
+    print(f'  タイトルで「まとめ系」{len(cur)}本／「それ以外」{len(non)}本。'
+          f'各{n_each}本を無作為に取って規則を当てる。\n')
+
+    names = ['①見出しリンク>30%', '②env+pit=0', '③1見出し<350字', '④評価/100字>50']
+    tab = {n: [0, 0] for n in names}
+    tp = fp = 0
+    for a, grp in sel:
+        try:
+            f = article_features(a['id'], fetch_fn)
+        except Exception:
+            continue
+        c = [f['pct_link_heads'] > 30, f['env_pit'] == 0, f['per_head'] < 350, f['per_100'] > 50]
+        for n, v in zip(names, c):
+            if v:
+                tab[n][0 if grp == 'まとめ系' else 1] += 1
+        if sum(c) >= 2:
+            if grp == 'まとめ系':
+                tp += 1
+            else:
+                fp += 1
+    print(f"  {'基準':<16}{'まとめ系で当たる':>12}{'それ以外で当たる':>14}")
+    for n in names:
+        print(f'  {n:<16}{tab[n][0]:>10}/{n_each}{tab[n][1]:>12}/{n_each}')
+    print(f'\n  4基準のうち2つ以上で除外した場合：')
+    print(f'    感度（まとめ系を正しく除外）{100*tp/n_each:>5.0f}%'
+          f'   偽陽性（それ以外を誤って除外）{100*fp/n_each:>5.0f}%')
+    print('    → 感度が低く偽陽性が残るなら、その規則は使えない。')
+    print('       少数の例から作った規則は、作るのに使った記事では必ず当たる。')
+    print('       測っていない記事で試してから書く。\n')
+
+
 if __name__ == '__main__':
     qp, zp = load('qiita_pool.json'), load('zenn_pool.json')
     q = [(x['title'], x['likes_count']) for x in qp] if qp else None
@@ -180,3 +267,4 @@ if __name__ == '__main__':
     check_titles(q, z)
     check_pool(zp)
     check_metrics()
+    check_rule(qp, fetch)
